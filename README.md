@@ -28,6 +28,7 @@ q = human.Query.create('How many people live in the US?', human.regex_utils.INT)
 ```
 
 ### Answering
+```
 q = human.Query.get() 
 >>> OrderedDict([('id', '0'), ('text', 'What is the meaning of life?'), ('regex', '^-?\d+$')])
 
