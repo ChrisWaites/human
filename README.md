@@ -6,7 +6,7 @@
 ### Installation
 
 ```
-pip install humanapi
+pip install human
 ```
 
 
