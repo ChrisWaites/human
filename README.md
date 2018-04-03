@@ -15,25 +15,29 @@ pip install human
 
 ### Connecting
 ```python
-from human import Human
+import human
 
-h = Human(username='...', password='...')
+human.username = '...'
+human.password = '...'
 ```
 
 ### Asking
 ```python
-q = h.ask('What is the meaning of life?')
-...
-q.responses()
->>> ['Love', 'Happiness', 'Memes', '42']
+from human import regex_utils
+
+q = human.Query.create('How many people live in the US?', regex_utils.INT)
 ```
 
-### Responding
-```python
-q = h.get()
->>> Question(text='What is 2+2?', regex='^-?\d+$')
-q.respond('Idk')
->>> ValueError("'Idk' does not match regex '^-?\d+$'")
-q.respond('4')
+### Answering
+# Text: How old are you?
+# Regex: ^-?\d+$
+q = human.Query.get() 
+
+# ValueError
+r = human.Response.create('Not sure', q)
+
+# Success!
+r = human.Response.create('42', q)
 ```
+
 

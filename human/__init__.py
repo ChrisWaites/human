@@ -1,43 +1,77 @@
 import coreapi
-import regex_utils
-import re
 import random
+import re
+
+from human import regex_utils
 
 
-SCHEMA_URL = 'http://127.0.0.1:8000/schema/'
+global username
+global password
+global schema_url
+
+schema_url = 'http://127.0.0.1:8000/schema/'
+username = None
+password = None
 
 
-class Human:
-    def __init__(self, username, password, schema_url=SCHEMA_URL):
-        self.client = coreapi.Client(
-            auth=coreapi.auth.BasicAuthentication(
-                username=username,
-                password=password
-            )
-        )
-        self.schema = self.client.get(schema_url)
+def connect(f):
+    def _connect(*args, **kwargs):
+        client = coreapi.Client(auth=coreapi.auth.BasicAuthentication(username, password))
+        schema = client.get(schema_url)
+        return f(client, schema, *args, **kwargs)
+    return _connect
 
-    def ask(self, text, regex=regex_utils.ANY):
-        return self.client.action(
-            self.schema,
-            ['queries', 'create'],
-            {'text': text, 'regex': regex}
-        )
 
-    def get(self):
-        queries = self.client.action(
-            self.schema,
+class Query:
+    @connect
+    def list(client, schema):
+        return client.action(
+            schema,
             ['queries', 'list']
         )
-        return random.choice(queries)
 
-    def respond(self, text, query):
+    @connect
+    def create(client, schema, text, regex=regex_utils.ANY):
+        return client.action(
+            schema,
+            fields=['queries', 'create'],
+            params={'text': text, 'regex': regex}
+        )
+
+    @connect
+    def get(client, schemea):
+        return random.choice(client.action(
+            schema,
+            ['queries', 'list']
+        ))
+
+
+class Response:
+    @connect
+    def create(client, schema, text, query):
         if re.fullmatch(query['regex'], text):
-            self.client.action(
-                self.schema,
+            return client.action(
+                schema,
                 ['responses', 'create'],
                 {'text': text, 'query': query['id']}
             )
         else:
             raise ValueError('\'{}\' does not match regex \'{}\''.format(text, query['regex']))
+
+
+class Attribute:
+    @connect
+    def list(client, schema):
+        return client.action(
+            schema,
+            ['attributes', 'list']
+        )
+
+    @connect
+    def create(client, schema, key, value):
+        return client.action(
+            schema,
+            ['attributes', 'create'],
+            {'key': key, 'value': value}
+        )
 

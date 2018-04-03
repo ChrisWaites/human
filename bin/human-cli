@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 
-username = input('user: ')
-password = input('pass: ')
+import human
 
-h = Human(username, password)
+human.username = input('user: ')
+human.password = input('pass: ')
 
 while True:
 
@@ -18,14 +18,14 @@ while True:
         regex = input('regex (optional): ')
         if regex == '':
             regex = regex_util.ANY
-        h.ask(text, regex)
+        human.Query.create(text, regex)
 
     elif response == 'r':
-        query = h.get()
+        query = human.Response.get()
         print('question: {}'.format(query['text']))
         print('regex: {}'.format(query['regex']))
         response = input('response: ')
-        h.respond(response, query)
+        human.Response.create(response, query)
 
     else:
         exit()
