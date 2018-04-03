@@ -13,24 +13,23 @@ pip install humanapi
 ## Getting Started
 
 
-### Establishing a connection
-```
+### Connecting
+```python
 from human import Human
-from human import regex_utils
 
 h = Human(username='...', password='...')
 ```
 
-### Asking a question
-```
+### Asking
+```python
 q = h.ask('What is the meaning of life?')
 ...
 q.responses()
 >>> ['Love', 'Happiness', 'Memes', '42']
 ```
 
-### Responding to a question
-```
+### Responding
+```python
 q = h.get()
 >>> Question(text='What is 2+2?', regex='^-?\d+$')
 q.respond('Idk')
