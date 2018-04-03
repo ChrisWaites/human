@@ -1,5 +1,5 @@
 import coreapi
-import regex_util
+import regex_utils
 import re
 import random
 
@@ -17,7 +17,7 @@ class Human:
         )
         self.schema = self.client.get(schema_url)
 
-    def ask(self, text, regex=regex_util.ANY):
+    def ask(self, text, regex=regex_utils.ANY):
         return self.client.action(
             self.schema,
             ['queries', 'create'],
@@ -40,5 +40,4 @@ class Human:
             )
         else:
             raise ValueError('\'{}\' does not match regex \'{}\''.format(text, query['regex']))
-
 
