@@ -23,21 +23,19 @@ human.password = '...'
 
 ### Asking
 ```python
-from human import regex_utils
-
-q = human.Query.create('How many people live in the US?', regex_utils.INT)
+q = human.Query.create('How many people live in the US?', human.regex_utils.INT)
+>>> OrderedDict([('text', 'How many people live in the US?'), ('regex', '^-?\d+$')])
 ```
 
 ### Answering
-# Text: How old are you?
-# Regex: ^-?\d+$
 q = human.Query.get() 
+>>> OrderedDict([('id', '0'), ('text', 'What is the meaning of life?'), ('regex', '^-?\d+$')])
 
-# ValueError
 r = human.Response.create('Not sure', q)
+>>> ValueError("'Not sure' does not match regex '^-?\d+$'")
 
-# Success!
 r = human.Response.create('42', q)
+>>> OrderedDict([('id', '0'), ('text', '42'), ('query', '0')])
 ```
 
 
