@@ -15,10 +15,10 @@ pip install human
 
 ### Connecting
 ```python
-import human
+>>> import human
 
-human.username = '...'
-human.password = '...'
+>>> human.username = '...'
+>>> human.password = '...'
 ```
 
 ### Asking a Query
@@ -34,16 +34,16 @@ OrderedDict([('text', 'How many people live in the US?'), ('regex', '^\\d+$')])
 
 OrderedDict([('id', 4), ('text', 'How old are you in years?'), ('regex', '^\\d+$'), ('response', None), ('created', '2018-04-04T20:50:24.560157Z')])
 
-r = human.Response.create('idk', q)
+>>> response = human.Response.create('idk', query)
 
 coreapi.exceptions.ErrorMessage: <Error: 400 Bad Request>
     non_field_errors: [
     "Response text 'idk' does not match query regex r'^\\d+$'"
 ]
 
-r = human.Response.create('42', q)
+>>> response = human.Response.create('42', query)
 
->>> OrderedDict([('text', '42'), ('query', 4)])
+OrderedDict([('text', '42'), ('query', 4)])
 ```
 
 ## Acknowledgements
