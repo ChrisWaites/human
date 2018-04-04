@@ -21,22 +21,29 @@ human.username = '...'
 human.password = '...'
 ```
 
-### Asking
+### Asking a Query
 ```python
-q = human.Query.create('How many people live in the US?', human.regex_utils.INT)
->>> OrderedDict([('text', 'How many people live in the US?'), ('regex', '^-?\d+$')])
+>>> human.Query.create('How many people live in the US?', human.regex_utils.NONNEG_INT)
+
+OrderedDict([('text', 'How many people live in the US?'), ('regex', '^\\d+$')])
 ```
 
-### Answering
+### Answering a Query
 ```
-q = human.Query.get() 
->>> OrderedDict([('id', '0'), ('text', 'What is the meaning of life?'), ('regex', '^-?\d+$')])
+>>> query = human.Query.get() 
 
-r = human.Response.create('Not sure', q)
->>> ValueError("'Not sure' does not match regex '^-?\d+$'")
+OrderedDict([('id', 4), ('text', 'How old are you in years?'), ('regex', '^\\d+$'), ('response', None), ('created', '2018-04-04T20:50:24.560157Z')])
+
+r = human.Response.create('idk', q)
+
+coreapi.exceptions.ErrorMessage: <Error: 400 Bad Request>
+    non_field_errors: [
+    "Response text 'idk' does not match query regex r'^\\d+$'"
+]
 
 r = human.Response.create('42', q)
->>> OrderedDict([('id', '0'), ('text', '42'), ('query', '0')])
+
+>>> OrderedDict([('text', '42'), ('query', 4)])
 ```
 
 ## Acknowledgements
