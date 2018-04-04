@@ -9,6 +9,6 @@ setup(
 
     license='MIT',
     url='http://github.com/ChrisWaites/human',
-    scripts=['bin/human-cli']
+    scripts=['bin/human-cli'],
     packages=find_packages(),
 )

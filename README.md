@@ -39,4 +39,7 @@ r = human.Response.create('42', q)
 >>> OrderedDict([('id', '0'), ('text', '42'), ('query', '0')])
 ```
 
+## Acknowledgements
+
+Worked on at the [Recurse Center](https://www.recurse.com/) in NYC
 

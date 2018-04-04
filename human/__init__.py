@@ -10,8 +10,12 @@ global password
 global schema_url
 
 schema_url = 'http://127.0.0.1:8000/schema/'
-username = None
-password = None
+username = 'cw'
+password = 'smokeycat'
+
+client = coreapi.Client(auth=coreapi.auth.BasicAuthentication(username, password))
+schema = client.get(schema_url)
+print(schema)
 
 
 def connect(f):
@@ -27,51 +31,73 @@ class Query:
     def list(client, schema):
         return client.action(
             schema,
-            ['queries', 'list']
+            ['queries', 'list'],
+            {}
         )
 
     @connect
     def create(client, schema, text, regex=regex_utils.ANY):
         return client.action(
             schema,
-            fields=['queries', 'create'],
-            params={'text': text, 'regex': regex}
+            ['queries', 'create'],
+            {'text': text, 'regex': regex}
         )
 
     @connect
-    def get(client, schemea):
-        return random.choice(client.action(
+    def read(client, schema, query):
+        return client.action(
             schema,
-            ['queries', 'list']
-        ))
+            ['queries', 'read'],
+            {'id': query['id']}
+        )
+
+    @connect
+    def delete(client, schema, query):
+        return client.action(
+            schema,
+            ['queries', 'delete'],
+            {'id': query['id']}
+        )
+
+    @connect
+    def get(client, schema):
+        return client.action(
+            schema,
+            ['queries', 'get']
+        )
 
 
 class Response:
     @connect
-    def create(client, schema, text, query):
-        if re.fullmatch(query['regex'], text):
-            return client.action(
-                schema,
-                ['responses', 'create'],
-                {'text': text, 'query': query['id']}
-            )
-        else:
-            raise ValueError('\'{}\' does not match regex \'{}\''.format(text, query['regex']))
-
-
-class Attribute:
-    @connect
     def list(client, schema):
         return client.action(
             schema,
-            ['attributes', 'list']
+            ['responses', 'list'],
+            {}
         )
 
     @connect
-    def create(client, schema, key, value):
+    def create(client, schema, text, query):
         return client.action(
             schema,
-            ['attributes', 'create'],
-            {'key': key, 'value': value}
+            ['responses', 'create'],
+            {'text': text, 'query': query['id']}
         )
+
+    @connect
+    def read(client, schema, response):
+        return client.action(
+            schema,
+            ['responses', 'read'],
+            {'id': response['id']}
+        )
+
+    @connect
+    def delete(client, schema, response):
+        return client.action(
+            schema,
+            ['responses', 'delete'],
+            {'id': response['id']}
+        )
+
 
