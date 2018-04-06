@@ -10,9 +10,12 @@ global password
 global schema_url
 
 schema_url = 'http://127.0.0.1:8000/schema/'
-username = None
-password = None
+username = 'cw'
+password = 'smokeycat'
 
+client = coreapi.Client(auth=coreapi.auth.BasicAuthentication(username, password))
+schema = client.get(schema_url)
+print(schema)
 
 def connect(f):
     def _connect(*args, **kwargs):
@@ -20,6 +23,16 @@ def connect(f):
         schema = client.get(schema_url)
         return f(client, schema, *args, **kwargs)
     return _connect
+
+
+class Payment:
+    @connect
+    def create(client, schema, token, queries):
+        return client.action(
+            schema,
+            ['payments', 'create'],
+            {'token': token, 'queries': [query['id'] for query in queries]}
+        )
 
 
 class Query:
