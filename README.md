@@ -46,7 +46,3 @@ coreapi.exceptions.ErrorMessage: <Error: 400 Bad Request>
 OrderedDict([('text', '42'), ('query', 4)])
 ```
 
-## Acknowledgements
-
-Worked on at the [Recurse Center](https://www.recurse.com/) in NYC
-
