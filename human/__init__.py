@@ -35,6 +35,16 @@ class Payment:
         )
 
 
+class Transfer:
+    @connect
+    def create(client, schema, token, responses):
+        return client.action(
+            schema,
+            ['transfers', 'create'],
+            {'token': token, 'responses': [response['id'] for response in responses]}
+        )
+
+
 class Query:
     @connect
     def list(client, schema):
@@ -70,10 +80,13 @@ class Query:
 
     @connect
     def get(client, schema):
-        return client.action(
-            schema,
-            ['queries', 'get']
-        )
+        try:
+            return client.action(
+                schema,
+                ['queries', 'get']
+            )
+        except Exception as e:
+            raise Exception('No queries present.')
 
 
 class Response:
