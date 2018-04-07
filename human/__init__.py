@@ -22,6 +22,24 @@ def connect(f):
     return _connect
 
 
+def connect_no_auth(f):
+    def _connect_no_auth(*args, **kwargs):
+        client = coreapi.Client()
+        schema = client.get(schema_url)
+        return f(client, schema, *args, **kwargs)
+    return _connect_no_auth
+
+
+class User:
+    @connect_no_auth
+    def create(client, schema, username, password):
+        return client.action(
+            schema,
+            ['users', 'create'],
+            {'username': username, 'password': password}
+        )
+
+
 class Payment:
     @connect
     def list(client, schema):
