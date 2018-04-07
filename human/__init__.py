@@ -24,6 +24,14 @@ def connect(f):
 
 class Payment:
     @connect
+    def list(client, schema):
+        return client.action(
+            schema,
+            ['payments', 'list'],
+            {}
+        )
+
+    @connect
     def create(client, schema, token, queries):
         return client.action(
             schema,
@@ -31,14 +39,38 @@ class Payment:
             {'token': token, 'queries': [query['id'] for query in queries]}
         )
 
+    @connect
+    def read(client, schema, query):
+        return client.action(
+            schema,
+            ['payments', 'read'],
+            {'id': query['id']}
+        )
+
 
 class Transfer:
+    @connect
+    def list(client, schema):
+        return client.action(
+            schema,
+            ['transfers', 'list'],
+            {}
+        )
+
     @connect
     def create(client, schema, token, responses):
         return client.action(
             schema,
             ['transfers', 'create'],
             {'token': token, 'responses': [response['id'] for response in responses]}
+        )
+
+    @connect
+    def read(client, schema, query):
+        return client.action(
+            schema,
+            ['transfers', 'read'],
+            {'id': query['id']}
         )
 
 
@@ -64,14 +96,6 @@ class Query:
         return client.action(
             schema,
             ['queries', 'read'],
-            {'id': query['id']}
-        )
-
-    @connect
-    def delete(client, schema, query):
-        return client.action(
-            schema,
-            ['queries', 'delete'],
             {'id': query['id']}
         )
 
@@ -110,13 +134,4 @@ class Response:
             ['responses', 'read'],
             {'id': response['id']}
         )
-
-    @connect
-    def delete(client, schema, response):
-        return client.action(
-            schema,
-            ['responses', 'delete'],
-            {'id': response['id']}
-        )
-
 
