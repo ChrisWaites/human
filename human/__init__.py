@@ -10,12 +10,9 @@ global password
 global schema_url
 
 schema_url = 'http://127.0.0.1:8000/schema/'
-username = 'cw'
-password = 'smokeycat'
+username = None
+password = None
 
-client = coreapi.Client(auth=coreapi.auth.BasicAuthentication(username, password))
-schema = client.get(schema_url)
-print(schema)
 
 def connect(f):
     def _connect(*args, **kwargs):
