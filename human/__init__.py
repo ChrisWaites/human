@@ -2,14 +2,14 @@ import coreapi
 import random
 import re
 
-from people import regex_utils
+from human import regex_utils
 
 
 global username
 global password
 global schema_url
 
-schema_url = 'http://127.0.0.1:8000/schema/'
+schema_url = 'https://human-server.herokuapp.com/'
 username = None
 password = None
 

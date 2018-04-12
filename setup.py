@@ -1,14 +1,14 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='people',
+    name='human',
     version='0.1',
     description='Human Interaction API',
     author='Chris Waites',
     author_email='cwaites10@gmail.com',
 
     license='MIT',
-    url='http://github.com/ChrisWaites/people',
-    scripts=['bin/people-cli'],
+    url='http://github.com/ChrisWaites/human',
+    scripts=['bin/human-cli'],
     packages=find_packages(),
 )
