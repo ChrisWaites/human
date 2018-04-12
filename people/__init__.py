@@ -2,7 +2,7 @@ import coreapi
 import random
 import re
 
-from human import regex_utils
+from people import regex_utils
 
 
 global username
@@ -32,11 +32,11 @@ def connect_no_auth(f):
 
 class User:
     @connect_no_auth
-    def create(client, schema, username, password):
+    def create(client, schema, email, username, password):
         return client.action(
             schema,
             ['users', 'create'],
-            {'username': username, 'password': password}
+            {'email': email, 'username': username, 'password': password}
         )
 
 
