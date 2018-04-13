@@ -1,7 +1,4 @@
 import coreapi
-import random
-import re
-
 from human import regex_utils
 
 
@@ -9,15 +6,14 @@ global username
 global password
 global schema_url
 
-schema_url = 'https://human-server.herokuapp.com/'
-username = None
-password = None
+schema_url = 'https://human-server.herokuapp.com/schema'
 
 
 def connect(f):
     def _connect(*args, **kwargs):
         client = coreapi.Client(auth=coreapi.auth.BasicAuthentication(username, password))
         schema = client.get(schema_url)
+        print(schema)
         return f(client, schema, *args, **kwargs)
     return _connect
 
@@ -26,6 +22,7 @@ def connect_no_auth(f):
     def _connect_no_auth(*args, **kwargs):
         client = coreapi.Client()
         schema = client.get(schema_url)
+        print(schema)
         return f(client, schema, *args, **kwargs)
     return _connect_no_auth
 
