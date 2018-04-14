@@ -9,26 +9,19 @@ global schema_url
 schema_url = 'https://human-server.herokuapp.com/schema'
 
 
-def connect(f):
-    def _connect(*args, **kwargs):
-        client = coreapi.Client(auth=coreapi.auth.BasicAuthentication(username, password))
-        schema = client.get(schema_url)
-        print(schema)
-        return f(client, schema, *args, **kwargs)
-    return _connect
-
-
-def connect_no_auth(f):
-    def _connect_no_auth(*args, **kwargs):
-        client = coreapi.Client()
-        schema = client.get(schema_url)
-        print(schema)
-        return f(client, schema, *args, **kwargs)
-    return _connect_no_auth
+def connect(authenticate=True):
+    def decorator(f):
+        def _connect(*args, **kwargs):
+            auth = coreapi.auth.BasicAuthentication(username, password) if authenticate else None 
+            client = coreapi.Client(auth=auth)
+            schema = client.get(schema_url)
+            return f(client, schema, *args, **kwargs)
+        return _connect
+    return decorator
 
 
 class User:
-    @connect_no_auth
+    @connect(False)
     def create(client, schema, email, username, password):
         return client.action(
             schema,
@@ -37,60 +30,52 @@ class User:
         )
 
 
-class Payment:
-    @connect
+class Profile:
+    @connect()
     def list(client, schema):
         return client.action(
             schema,
-            ['payments', 'list'],
+            ['profiles', 'list'],
             {}
         )
 
-    @connect
-    def create(client, schema, token, queries):
+    @connect()
+    def read(client, schema, profile):
         return client.action(
             schema,
-            ['payments', 'create'],
-            {'token': token, 'queries': [query['id'] for query in queries]}
-        )
-
-    @connect
-    def read(client, schema, query):
-        return client.action(
-            schema,
-            ['payments', 'read'],
-            {'id': query['id']}
+            ['profiles', 'read'],
+            {'id': profile['id']}
         )
 
 
-class Transfer:
-    @connect
+class Attribute:
+    @connect()
     def list(client, schema):
         return client.action(
             schema,
-            ['transfers', 'list'],
+            ['attributes', 'list'],
             {}
         )
 
-    @connect
-    def create(client, schema, token, responses):
+    @connect()
+    def read(client, schema, attribute):
         return client.action(
             schema,
-            ['transfers', 'create'],
-            {'token': token, 'responses': [response['id'] for response in responses]}
+            ['attributes', 'read'],
+            {'id': attribute['id']}
         )
 
-    @connect
-    def read(client, schema, query):
+    @connect()
+    def create(client, schema, key, value):
         return client.action(
             schema,
-            ['transfers', 'read'],
-            {'id': query['id']}
+            ['attributes', 'create'],
+            {'key': key, 'value': value}
         )
 
 
 class Query:
-    @connect
+    @connect()
     def list(client, schema):
         return client.action(
             schema,
@@ -98,7 +83,7 @@ class Query:
             {}
         )
 
-    @connect
+    @connect()
     def create(client, schema, text, regex=regex_utils.ANY):
         return client.action(
             schema,
@@ -106,7 +91,7 @@ class Query:
             {'text': text, 'regex': regex}
         )
 
-    @connect
+    @connect()
     def read(client, schema, query):
         return client.action(
             schema,
@@ -114,7 +99,7 @@ class Query:
             {'id': query['id']}
         )
 
-    @connect
+    @connect()
     def get(client, schema):
         try:
             return client.action(
@@ -126,7 +111,7 @@ class Query:
 
 
 class Response:
-    @connect
+    @connect()
     def list(client, schema):
         return client.action(
             schema,
@@ -134,7 +119,7 @@ class Response:
             {}
         )
 
-    @connect
+    @connect()
     def create(client, schema, text, query):
         return client.action(
             schema,
@@ -142,7 +127,7 @@ class Response:
             {'text': text, 'query': query['id']}
         )
 
-    @connect
+    @connect()
     def read(client, schema, response):
         return client.action(
             schema,
