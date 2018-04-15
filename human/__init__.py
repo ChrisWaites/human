@@ -47,6 +47,40 @@ class Profile:
             {'id': profile['id']}
         )
 
+    @connect
+    def update(client, schema, customer_id):
+        return client.action(
+            schema,
+            ['profiles', 'update'],
+            {'customer_id': customer_id}
+        )
+
+
+class Transaction:
+    @connect()
+    def list(client, schema):
+        return client.action(
+            schema,
+            ['transactions', 'list'],
+            {}
+        )
+
+    @connect()
+    def read(client, schema, transaction):
+        return client.action(
+            schema,
+            ['transactions', 'read'],
+            {'id': transaction['id']}
+        )
+
+    @connect()
+    def create(client, schema, amount):
+        return client.action(
+            schema,
+            ['transactions', 'create'],
+            {'amount': amount}
+        )
+
 
 class Attribute:
     @connect()
@@ -71,6 +105,14 @@ class Attribute:
             schema,
             ['attributes', 'create'],
             {'key': key, 'value': value}
+        )
+
+    @connect()
+    def destroy(client, schema, attribute):
+        return client.action(
+            schema,
+            ['attributes', 'destroy'],
+            {'id': attribute['id']}
         )
 
 
