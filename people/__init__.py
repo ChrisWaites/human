@@ -6,7 +6,7 @@ global username
 global password
 global schema_url
 
-schema_url = 'https://human-server.herokuapp.com/schema'
+schema_url = 'https://people-api-server.herokuapp.com/schema'
 
 
 def connect(authenticate=True):
@@ -47,7 +47,7 @@ class Profile:
             {'id': profile['id']}
         )
 
-    @connect
+    @connect()
     def update(client, schema, customer_id):
         return client.action(
             schema,
