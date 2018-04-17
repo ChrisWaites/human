@@ -1,4 +1,4 @@
-# Human API
+# People API
 
 `people` is an API for querying human intelligence.
 
