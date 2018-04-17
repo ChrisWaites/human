@@ -1,5 +1,5 @@
 import coreapi
-from human import regex_utils
+from people import regex
 
 
 global username
