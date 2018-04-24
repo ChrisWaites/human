@@ -72,7 +72,7 @@ r'd+'
 
 coreapi.exceptions.ErrorMessage: <Error: 400 Bad Request>
     non_field_errors: [
-    "Response text 'idk' does not match query regex r'd+'"
+    "Response text 'Not sure.' does not match query regex r'd+'"
 ]
 
 >>> response = people.Response.create('3', query['id'])

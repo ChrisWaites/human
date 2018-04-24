@@ -114,7 +114,7 @@ class Query:
         )
 
     @connect()
-    def create(client, schema, text, regex=regex_utils.ANY):
+    def create(client, schema, text, regex=regex.ANY):
         return client.action(
             schema,
             ['queries', 'create'],
