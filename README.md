@@ -36,7 +36,12 @@ You should see your balance afterwards within your profile.
 ### Creating Queries
 ```python
 >>> people.Query.create(
-    "Translate the following to English: Qui n'avance pas, recule."
+    "Translate the following sentence to English: Qui n'avance pas, recule."
+)
+
+>>> people.Query.create(
+    "Is this an image of a [cat], a [dog], or [neither]? https://imgur.com/...",
+    people.regex.union('cat', 'dog', 'neither')
 )
 
 >>> people.Query.create(
@@ -45,9 +50,10 @@ You should see your balance afterwards within your profile.
 )
 
 >>> people.Query.create(
-    "Is this an image of a [cat] or a [dog]? https://imgur.com/...",
-    people.regex.UNION('cat', 'dog')
+    "How positive is this paragraph on a scale from 0.0 to 1.0? https://...",
+    people.regex.FLOAT_ZERO_TO_ONE
 )
+
 ```
 
 ### Creating Responses
