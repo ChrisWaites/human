@@ -26,7 +26,7 @@ class User:
         return client.action(
             schema,
             ['users', 'create'],
-            {'email': email, 'username': username, 'password': password}
+            {'email': email, 'username': username, 'password': password},
         )
 
 
@@ -36,49 +36,39 @@ class Profile:
         return client.action(
             schema,
             ['profiles', 'list'],
-            {}
         )
 
     @connect()
-    def read(client, schema, profile):
+    def read(client, schema, id):
         return client.action(
             schema,
             ['profiles', 'read'],
-            {'id': profile['id']}
-        )
-
-    @connect()
-    def update(client, schema, customer_id):
-        return client.action(
-            schema,
-            ['profiles', 'update'],
-            {'customer_id': customer_id}
+            {'id': id},
         )
 
 
-class Transaction:
+class Deposit:
     @connect()
     def list(client, schema):
         return client.action(
             schema,
-            ['transactions', 'list'],
-            {}
+            ['deposits', 'list'],
         )
 
     @connect()
-    def read(client, schema, transaction):
+    def read(client, schema, id):
         return client.action(
             schema,
-            ['transactions', 'read'],
-            {'id': transaction['id']}
+            ['deposits', 'read'],
+            {'id': id},
         )
 
     @connect()
-    def create(client, schema, amount):
+    def create(client, schema, stripeToken, amount):
         return client.action(
             schema,
-            ['transactions', 'create'],
-            {'amount': amount}
+            ['deposits', 'create'],
+            {'stripeToken': stripeToken, 'amount': amount},
         )
 
 
@@ -88,15 +78,14 @@ class Attribute:
         return client.action(
             schema,
             ['attributes', 'list'],
-            {}
         )
 
     @connect()
-    def read(client, schema, attribute):
+    def read(client, schema, id):
         return client.action(
             schema,
             ['attributes', 'read'],
-            {'id': attribute['id']}
+            {'id': id},
         )
 
     @connect()
@@ -104,15 +93,15 @@ class Attribute:
         return client.action(
             schema,
             ['attributes', 'create'],
-            {'key': key, 'value': value}
+            {'key': key, 'value': value},
         )
 
     @connect()
-    def destroy(client, schema, attribute):
+    def destroy(client, schema, id):
         return client.action(
             schema,
             ['attributes', 'destroy'],
-            {'id': attribute['id']}
+            {'id': id},
         )
 
 
@@ -122,7 +111,6 @@ class Query:
         return client.action(
             schema,
             ['queries', 'list'],
-            {}
         )
 
     @connect()
@@ -130,15 +118,15 @@ class Query:
         return client.action(
             schema,
             ['queries', 'create'],
-            {'text': text, 'regex': regex}
+            {'text': text, 'regex': regex},
         )
 
     @connect()
-    def read(client, schema, query):
+    def read(client, schema, id):
         return client.action(
             schema,
             ['queries', 'read'],
-            {'id': query['id']}
+            {'id': id}
         )
 
     @connect()
@@ -146,7 +134,7 @@ class Query:
         try:
             return client.action(
                 schema,
-                ['queries', 'get']
+                ['queries', 'get'],
             )
         except Exception as e:
             raise Exception('No queries present.')
@@ -158,22 +146,21 @@ class Response:
         return client.action(
             schema,
             ['responses', 'list'],
-            {}
         )
 
     @connect()
-    def create(client, schema, text, query):
+    def create(client, schema, text, query_id):
         return client.action(
             schema,
             ['responses', 'create'],
-            {'text': text, 'query': query['id']}
+            {'text': text, 'query': query_id},
         )
 
     @connect()
-    def read(client, schema, response):
+    def read(client, schema, id):
         return client.action(
             schema,
             ['responses', 'read'],
-            {'id': response['id']}
+            {'id': id},
         )
 
