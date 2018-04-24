@@ -35,7 +35,7 @@ You should see your balance afterwards within your profile.
 
 ### Creating a Query
 ```python
->>> query = people.Query.create('How many people live in the US?', people.regex_utils.NONNEG_INT)
+>>> query = people.Query.create('How many people live in the US?', people.regex.NONNEG_INT)
 
 >>> query['text']
 
