@@ -50,8 +50,8 @@ You should see your balance afterwards within your profile.
 )
 
 >>> people.Query.create(
-    "How positive is this paragraph on a scale from 0.0 to 1.0? https://...",
-    people.regex.FLOAT_ZERO_TO_ONE
+    "How positive is this article on a scale from 1 to 5? https://...",
+    r'[1-5]'
 )
 
 ```
