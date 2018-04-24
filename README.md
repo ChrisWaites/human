@@ -33,34 +33,42 @@ To deposit funds, login and visit `https://people-api-server.herokuapp.com/check
 You should see your balance afterwards within your profile.
 
 
-### Creating a Query
+### Creating Queries
 ```python
->>> query = people.Query.create('How many people live in the US?', people.regex.NONNEG_INT)
+>>> people.Query.create(
+    "Translate the following to English: Qui n'avance pas, recule."
+)
 
->>> query['text']
+>>> people.Query.create(
+    "How many cars are in this image? https://imgur.com/...",
+    people.regex.NONNEG_INT
+)
 
-'How many people live in the US?'
-
->>> query['regex']
-
-r'd+'
+>>> people.Query.create(
+    "Is this an image of a [cat] or a [dog]? https://imgur.com/...",
+    people.regex.UNION('cat', 'dog')
+)
 ```
 
-### Creating a Response
+### Creating Responses
 ```python
 >>> query = people.Query.get() 
 
 >>> query['text']
 
-'How many people live in the US?'
+"How many cars are in this image? https://imgur.com/...",
 
->>> response = people.Response.create('idk', query['id'])
+>>> query['regex']
+
+r'd+'
+
+>>> response = people.Response.create('Not sure.', query['id'])
 
 coreapi.exceptions.ErrorMessage: <Error: 400 Bad Request>
     non_field_errors: [
     "Response text 'idk' does not match query regex r'd+'"
 ]
 
->>> response = people.Response.create('42', query['id'])
+>>> response = people.Response.create('3', query['id'])
 ```
 
