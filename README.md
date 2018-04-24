@@ -40,13 +40,13 @@ You should see your balance afterwards within your profile.
 )
 
 >>> people.Query.create(
-    "Is this an image of a [cat], a [dog], or [neither]? https://imgur.com/...",
-    people.regex.union('cat', 'dog', 'neither')
+    "How many cars are in this image? https://imgur.com/...",
+    people.regex.NONNEG_INT
 )
 
 >>> people.Query.create(
-    "How many cars are in this image? https://imgur.com/...",
-    people.regex.NONNEG_INT
+    "Is this an image of a [cat], a [dog], or [neither]? https://imgur.com/...",
+    people.regex.union('cat', 'dog', 'neither')
 )
 
 >>> people.Query.create(
