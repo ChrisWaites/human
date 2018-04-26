@@ -26,11 +26,13 @@ pip install people
 
 ### Funding Your Account
 
-Payment info is completely handled by [Stripe](https://stripe.com/), ensuring your payment security.
+Transactions and payment info are completely handled by [Stripe](https://stripe.com/), ensuring your security.
 
-To deposit funds, login and visit `https://people-api-server.herokuapp.com/checkout/?amount=DESIRED_DEPOSIT_AMOUNT`
+To deposit funds, login and visit `https://people-api-server.herokuapp.com/checkout/?amount=AMOUNT`, replacing `AMOUNT` with the amount you intend to deposit in cents.
 
-You should see your balance afterwards within your profile.
+You should see your balance afterwards within your profile at `https://people-api-server.herokuapp.com/profile`.
+
+If you want to claim a discrepency, feel free to email `support@peopleapi.com` with your inquiry.
 
 
 ### Creating Queries
@@ -40,17 +42,17 @@ You should see your balance afterwards within your profile.
 )
 
 >>> people.Query.create(
-    "How many cars are in this image? https://imgur.com/...",
+    "How many cars are in this image? http://...",
     people.regex.NONNEG_INT
 )
 
 >>> people.Query.create(
-    "Is this an image of a [cat], a [dog], or [neither]? https://imgur.com/...",
+    "Is this an image of a [cat], a [dog], or [neither]? http://...",
     people.regex.union('cat', 'dog', 'neither')
 )
 
 >>> people.Query.create(
-    "How positive is this article on a scale from 1 to 5? https://...",
+    "How positive is this article on a scale from 1 to 5? http://...",
     r'[1-5]'
 )
 
@@ -62,7 +64,7 @@ You should see your balance afterwards within your profile.
 
 >>> query['text']
 
-"How many cars are in this image? https://imgur.com/...",
+"How many cars are in this image? http://...",
 
 >>> query['regex']
 
@@ -76,5 +78,16 @@ coreapi.exceptions.ErrorMessage: <Error: 400 Bad Request>
 ]
 
 >>> response = people.Response.create('3', query['id'])
+```
+
+### Providing Feedback
+```python
+>>> good_response = ...
+
+>>> people.Rating.create(True, good_response['id'])
+
+>>> bad_response = ...
+
+>>> people.Rating.create(False, bad_response['id'])
 ```
 
