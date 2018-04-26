@@ -58,27 +58,22 @@ If you want to claim a discrepency, feel free to email `support@peopleapi.com` w
 ```
 
 ### Reading Responses
-
+```python
 >>> query = people.Query.create(
     "How many cars are in this image? http://...",
     people.regex.NONNEG_INT
 )
 
->>> try:
->>>     people.Query.read(query['id'])['response']
->>> except Exception as e:
->>>     print('No response.')
+>>> response = people.Query.read(query['id'])['response']
 
-No response.
+None
 
 ...
 
->>> try:
->>>     people.Query.read(query['id'])['response']
->>> except Exception as e:
->>>     print('No response.')
+>>> response = people.Query.read(query['id'])['response']
+>>> response['text']
 
-5
+3
 ```
 
 ### Creating Responses
