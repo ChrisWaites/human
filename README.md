@@ -55,7 +55,30 @@ If you want to claim a discrepency, feel free to email `support@peopleapi.com` w
     "How positive is this article on a scale from 1 to 5? http://...",
     r'[1-5]'
 )
+```
 
+### Reading Responses
+
+>>> query = people.Query.create(
+    "How many cars are in this image? http://...",
+    people.regex.NONNEG_INT
+)
+
+>>> try:
+>>>     people.Query.read(query['id'])['response']
+>>> except Exception as e:
+>>>     print('No response.')
+
+No response.
+
+...
+
+>>> try:
+>>>     people.Query.read(query['id'])['response']
+>>> except Exception as e:
+>>>     print('No response.')
+
+5
 ```
 
 ### Creating Responses
