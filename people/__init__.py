@@ -164,3 +164,36 @@ class Response:
             {'id': id},
         )
 
+
+class Rating:
+    @connect()
+    def list(client, schema):
+        return client.action(
+            schema,
+            ['ratings', 'list'],
+        )
+
+    @connect()
+    def create(client, schema, satisfactory, response_id):
+        return client.action(
+            schema,
+            ['ratings', 'create'],
+            {'satisfactory': satisfactory, 'response': response_id},
+        )
+
+    @connect()
+    def read(client, schema, id):
+        return client.action(
+            schema,
+            ['ratings', 'read'],
+            {'id': id},
+        )
+
+    @connect()
+    def destroy(client, schema, id):
+        return client.action(
+            schema,
+            ['attributes', 'destroy'],
+            {'id': id},
+        )
+
