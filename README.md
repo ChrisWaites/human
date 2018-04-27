@@ -94,7 +94,7 @@ coreapi.exceptions.ErrorMessage: <Error: 400 Bad Request>
 
 ### Redeeming from Your Account
 
-To redeem funds, if you haven't already, login and visit `https://people-api-server.herokuapp.com/register` to register for a Stripe account.
+To redeem funds, if you haven't already, login and visit `https://people-api-server.herokuapp.com/register` to register for a Stripe account connected to our platform.
 
 You should see your Stripe account id update within your profile at `https://people-api-server.herokuapp.com/profile`.
 
