@@ -59,21 +59,16 @@ If you want to claim a discrepency, feel free to email `support@peopleapi.com` w
 
 ### Reading Responses
 ```python
->>> query = people.Query.create(
-    "How many cars are in this image? http://...",
-    people.regex.NONNEG_INT
-)
-
->>> response = people.Query.read(query['id'])['response']
+>>> unanswered_query = ... 
+>>> response = people.Query.read(unanswered_query['id'])['response']
 
 None
 
-...
-
->>> response = people.Query.read(query['id'])['response']
+>>> answered_query = ...
+>>> response = people.Query.read(answered_query['id'])['response']
 >>> response['text']
 
-3
+34.1231
 ```
 
 ### Creating Responses
