@@ -26,13 +26,13 @@ pip install people
 
 ### Funding Your Account
 
-Transactions and payment info are completely handled by [Stripe](https://stripe.com/), ensuring your security.
+Charges are handled using [Checkout](https://stripe.com/checkout) by [Stripe](https://stripe.com/), ensuring your security by handling all secure information client side.
 
 To deposit funds, login and visit `https://people-api-server.herokuapp.com/deposit/?amount=AMOUNT`, replacing `AMOUNT` with the amount you intend to deposit in cents.
 
 You should see your balance afterwards within your profile at `https://people-api-server.herokuapp.com/profile`.
 
-If you want to claim a discrepency, feel free to email `support@peopleapi.com` with your inquiry.
+If you think there's a discrepency, feel free to email `support@peopleapi.com` with your inquiry.
 
 
 ### Creating Queries
@@ -94,7 +94,7 @@ coreapi.exceptions.ErrorMessage: <Error: 400 Bad Request>
 
 ### Redeeming from Your Account
 
-To redeem funds, if you haven't already, login and visit `https://people-api-server.herokuapp.com/register`, to register for a Stripe account.
+To redeem funds, if you haven't already, login and visit `https://people-api-server.herokuapp.com/register` to register for a Stripe account.
 
 You should see your Stripe account id update within your profile at `https://people-api-server.herokuapp.com/profile`.
 
