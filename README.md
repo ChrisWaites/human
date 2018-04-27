@@ -74,7 +74,6 @@ None
 ### Creating Responses
 ```python
 >>> query = people.Query.get() 
-
 >>> query['text']
 
 "How many cars are in this image? http://...",
@@ -105,7 +104,6 @@ Now, simply create a Transfer for the amount you intend to redeem in cents.
 >>> transfer = people.Transfer.create(50) 
 ```
 
-
 ### Providing Feedback
 
 Users should feel incentivized to provide feedback on a subset of their responses to minimize their likelihood of receiving future interaction
@@ -113,11 +111,9 @@ with poor quality responders.
 
 ```python
 >>> good_response = ...
-
 >>> people.Rating.create(True, good_response['id'])
 
 >>> bad_response = ...
-
 >>> people.Rating.create(False, bad_response['id'])
 ```
 
