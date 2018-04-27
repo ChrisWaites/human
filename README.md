@@ -28,7 +28,7 @@ pip install people
 
 Transactions and payment info are completely handled by [Stripe](https://stripe.com/), ensuring your security.
 
-To deposit funds, login and visit `https://people-api-server.herokuapp.com/checkout/?amount=AMOUNT`, replacing `AMOUNT` with the amount you intend to deposit in cents.
+To deposit funds, login and visit `https://people-api-server.herokuapp.com/deposit/?amount=AMOUNT`, replacing `AMOUNT` with the amount you intend to deposit in cents.
 
 You should see your balance afterwards within your profile at `https://people-api-server.herokuapp.com/profile`.
 
@@ -98,7 +98,24 @@ coreapi.exceptions.ErrorMessage: <Error: 400 Bad Request>
 >>> response = people.Response.create('3', query['id'])
 ```
 
+### Redeeming from Your Account
+
+To redeem funds, if you haven't already, login and visit `https://people-api-server.herokuapp.com/register`, to register for a Stripe account.
+
+You should see your Stripe account id update within your profile at `https://people-api-server.herokuapp.com/profile`.
+
+Now, simply create a Transfer for the amount you intend to redeem in cents.
+
+```python
+>>> transfer = people.Transfer.create(50) 
+```
+
+
 ### Providing Feedback
+
+Users should feel incentivized to provide feedback on a subset of their responses to minimize their likelihood of receiving future interaction
+with poor quality responders.
+
 ```python
 >>> good_response = ...
 
