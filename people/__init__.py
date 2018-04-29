@@ -89,7 +89,7 @@ class Transfer:
         )
 
     @connect()
-    def create(client, schema, stripeToken, amount):
+    def create(client, schema, amount):
         return client.action(
             schema,
             ['transfers', 'create'],
