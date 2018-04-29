@@ -71,6 +71,31 @@ class Deposit:
             {'stripeToken': stripeToken, 'amount': amount},
         )
 
+        
+class Transfer:
+    @connect()
+    def list(client, schema):
+        return client.action(
+            schema,
+            ['transfers', 'list'],
+        )
+
+    @connect()
+    def read(client, schema, id):
+        return client.action(
+            schema,
+            ['transfers', 'read'],
+            {'id': id},
+        )
+
+    @connect()
+    def create(client, schema, stripeToken, amount):
+        return client.action(
+            schema,
+            ['transfers', 'create'],
+            {'amount': amount},
+        )
+
 
 class Attribute:
     @connect()
