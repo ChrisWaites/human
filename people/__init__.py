@@ -34,7 +34,9 @@ class User:
     @connect(False)
     def create(client, schema, email, username, password):
         """
-        Creates a user object.
+        Args:
+            username (str): New account username
+            password (str): New account password
         """
         return client.action(
             schema,
