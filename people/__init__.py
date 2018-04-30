@@ -100,6 +100,8 @@ class Transfer:
     @connect()
     def read(client, schema, id):
         """
+        Args:
+            id (str):
         """
         return client.action(
             schema,
@@ -110,6 +112,8 @@ class Transfer:
     @connect()
     def create(client, schema, amount):
         """
+        Args:
+            amount (int):
         """
         return client.action(
             schema,
@@ -134,6 +138,8 @@ class Attribute:
     @connect()
     def read(client, schema, id):
         """
+        Args:
+            id (str):
         """
         return client.action(
             schema,
@@ -144,6 +150,9 @@ class Attribute:
     @connect()
     def create(client, schema, key, value):
         """
+        Args:
+            key (str):
+            value (str):
         """
         return client.action(
             schema,
@@ -154,6 +163,8 @@ class Attribute:
     @connect()
     def destroy(client, schema, id):
         """
+        Args:
+            id (str):
         """
         return client.action(
             schema,
@@ -178,6 +189,9 @@ class Query:
     @connect()
     def create(client, schema, text, regex=regex.ANY):
         """
+        Args:
+            text (str):
+            regex (str):
         """
         return client.action(
             schema,
@@ -188,6 +202,8 @@ class Query:
     @connect()
     def read(client, schema, id):
         """
+        Args:
+            id (str)
         """
         return client.action(
             schema,
