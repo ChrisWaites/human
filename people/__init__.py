@@ -34,9 +34,9 @@ class User:
     def create(client, schema, email, username, password):
         """
         Args:
-            email (str): The new account's email
-            username (str): The new account's username
-            password (str): The new account's password
+            email (str): The new account's email.
+            username (str): The new account's username.
+            password (str): The new account's password.
         """
         return client.action(
             schema,
@@ -62,7 +62,7 @@ class Deposit:
     def read(client, schema, id):
         """
         Args:
-            id (str):
+            id (str): The id of the deposit.
         """
         return client.action(
             schema,
@@ -74,8 +74,8 @@ class Deposit:
     def create(client, schema, stripeToken, amount):
         """
         Args:
-            stripeToken (int):
-            amount (int):
+            stripeToken (int): A Stripe token representing a valid card.
+            amount (int): The amount of the deposit in cents.
         """
         return client.action(
             schema,
@@ -101,7 +101,7 @@ class Transfer:
     def read(client, schema, id):
         """
         Args:
-            id (str):
+            id (str): The id of the transfer.
         """
         return client.action(
             schema,
@@ -113,7 +113,7 @@ class Transfer:
     def create(client, schema, amount):
         """
         Args:
-            amount (int):
+            amount (int): The amount of the transfer in cents.
         """
         return client.action(
             schema,
@@ -124,6 +124,7 @@ class Transfer:
 
 class Attribute:
     """
+    A key-value relationship representing a profile attribute. E.g. ('education', 'university of california, berkeley')
     """
 
     @connect()
@@ -139,7 +140,7 @@ class Attribute:
     def read(client, schema, id):
         """
         Args:
-            id (str):
+            id (str): The id of the attribute.
         """
         return client.action(
             schema,
@@ -151,8 +152,8 @@ class Attribute:
     def create(client, schema, key, value):
         """
         Args:
-            key (str):
-            value (str):
+            key (str): The attribute tag.
+            value (str): The attribute value.
         """
         return client.action(
             schema,
@@ -164,7 +165,7 @@ class Attribute:
     def destroy(client, schema, id):
         """
         Args:
-            id (str):
+            id (str): The id of the attribute.
         """
         return client.action(
             schema,
@@ -190,8 +191,8 @@ class Query:
     def create(client, schema, text, regex=regex.ANY):
         """
         Args:
-            text (str):
-            regex (str):
+            text (str): The text to be included in the query.
+            regex (str): A regex the response must match to be valid.
         """
         return client.action(
             schema,
@@ -203,7 +204,7 @@ class Query:
     def read(client, schema, id):
         """
         Args:
-            id (str):
+            id (str): The id of the query.
         """
         return client.action(
             schema,
@@ -214,6 +215,7 @@ class Query:
     @connect()
     def get(client, schema):
         """
+        Retrieves a random query for the current user.
         """
         try:
             return client.action(
@@ -241,8 +243,8 @@ class Response:
     def create(client, schema, text, query_id):
         """
         Args:
-            text (str):
-            query_id (str):
+            text (str): The text for the response.
+            query_id (str): The id of the target query.
         """
         return client.action(
             schema,
@@ -254,7 +256,7 @@ class Response:
     def read(client, schema, id):
         """
         Args:
-            id (str):
+            id (str): The id of the response.
         """
         return client.action(
             schema,
@@ -280,8 +282,8 @@ class Rating:
     def create(client, schema, satisfactory, response_id):
         """
         Args:
-            satisfactory (bool):
-            response_id (str):
+            satisfactory (bool): True if the response is satisfactory, False otherwise.
+            response_id (str): The id of the response.
         """
         return client.action(
             schema,
@@ -293,7 +295,7 @@ class Rating:
     def read(client, schema, id):
         """
         Args:
-            id (str):
+            id (str): The id of the rating.
         """
         return client.action(
             schema,
@@ -305,7 +307,7 @@ class Rating:
     def destroy(client, schema, id):
         """
         Args:
-            id (str):
+            id (str): The id of the rating.
         """
         return client.action(
             schema,
