@@ -33,6 +33,8 @@ class User:
     @connect(False)
     def create(client, schema, email, username, password):
         """
+        Creates a new User instance. 
+        
         Args:
             email (str): The new account's email.
             username (str): The new account's username.
@@ -73,6 +75,8 @@ class Deposit:
     @connect()
     def create(client, schema, stripeToken, amount):
         """
+        Creates a new Deposit instance. 
+
         Args:
             stripeToken (int): A Stripe token representing a valid card.
             amount (int): The amount of the deposit in cents.
@@ -112,6 +116,8 @@ class Transfer:
     @connect()
     def create(client, schema, amount):
         """
+        Creates a new Transfer instance.
+
         Args:
             amount (int): The amount of the transfer in cents.
         """
@@ -151,6 +157,8 @@ class Attribute:
     @connect()
     def create(client, schema, key, value):
         """
+        Creates a new Transfer instance.
+        
         Args:
             key (str): The attribute tag.
             value (str): The attribute value.
@@ -190,6 +198,8 @@ class Query:
     @connect()
     def create(client, schema, text, regex=regex.ANY):
         """
+        Creates a new Query instance. 
+
         Args:
             text (str): The text to be included in the query.
             regex (str): A regex the response must match to be valid.
@@ -242,6 +252,8 @@ class Response:
     @connect()
     def create(client, schema, text, query_id):
         """
+        Creates a new Response instance.
+
         Args:
             text (str): The text for the response.
             query_id (str): The id of the target query.
@@ -281,6 +293,8 @@ class Rating:
     @connect()
     def create(client, schema, satisfactory, response_id):
         """
+        Creates a new Rating instance.
+
         Args:
             satisfactory (bool): True if the response is satisfactory, False otherwise.
             response_id (str): The id of the response.
