@@ -216,8 +216,8 @@ class Query:
         Args:
             text (str): The text to be included in the query.
             regex (str): A regex the response must match to be valid. Defaults to '.*'.
-            callback (str): A url for the query response to be posted to. Defaults to None.
-            bid (int): The bid price for getting a response in cents. Defaults to 1.
+            callback (str): The url for the Response to be POSTed to. Defaults to None.
+            bid (int): The bid price for the Response in cents. Defaults to 1.
         """
         return client.action(
             schema,
