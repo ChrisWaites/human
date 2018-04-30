@@ -10,13 +10,15 @@ People API
    :maxdepth: 2
    :caption: Contents:
 
-.. automodule:: people
+User
+====
+
+.. autoclass:: people.User
    :members:
 
+Query
+====
 
-Indices and tables
-==================
+.. autoclass:: people.Query
+   :members:
 
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
