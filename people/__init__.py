@@ -162,14 +162,14 @@ class Query:
 
     @connect()
     def get(client, schema):
-    """Requests a query.
+        """Requests a query.
 
-    Returns:
-        Query. A random query.
+        Returns:
+            Query. A random query.
 
-    Raises:
-        Exception
-    """
+        Raises:
+            Exception
+        """
         try:
             return client.action(
                 schema,
