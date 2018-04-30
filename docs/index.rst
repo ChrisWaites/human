@@ -10,6 +10,8 @@ Welcome to people's documentation!
    :maxdepth: 2
    :caption: Contents:
 
+.. automodule:: people
+
 
 
 Indices and tables

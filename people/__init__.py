@@ -21,6 +21,9 @@ def connect(authenticate=True):
 
 
 class User:
+    """
+    User documenation. XDDD
+    """
     @connect(False)
     def create(client, schema, email, username, password):
         return client.action(
