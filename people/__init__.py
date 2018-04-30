@@ -167,7 +167,7 @@ class Attribute:
     @connect()
     def create(client, schema, key, value):
         """
-        Creates a new Transfer instance.
+        Creates a new Attribute instance.
         
         Args:
             key (str): The attribute tag.
@@ -209,18 +209,20 @@ class Query:
         )
 
     @connect()
-    def create(client, schema, text, regex=regex.ANY):
+    def create(client, schema, text, regex=regex.ANY, callback=None, bid=1):
         """
         Creates a new Query instance. 
 
         Args:
             text (str): The text to be included in the query.
-            regex (str): A regex the response must match to be valid.
+            regex (str): A regex the response must match to be valid. Defaults to '.*'.
+            callback (str): A url for the query response to be posted to. Defaults to None.
+            bid (int): The bid price for getting a response in cents. Defaults to 1.
         """
         return client.action(
             schema,
             ['queries', 'create'],
-            {'text': text, 'regex': regex},
+            {'text': text, 'regex': regex, 'callback': callback, 'bid': bid},
         )
 
     @connect()
