@@ -10,7 +10,10 @@ People API
    :maxdepth: 2
    :caption: Contents:
 
-.. automodule:: People
+.. automodule:: people
+   :members:
+
+.. autoclass:: people.User
    :members:
 
 
