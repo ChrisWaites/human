@@ -1,3 +1,7 @@
+"""
+people module
+"""
+
 import coreapi
 from people import regex
 
@@ -21,9 +25,15 @@ def connect(authenticate=True):
 
 
 class User:
+    """
+    User class
+    """
 
     @connect(False)
     def create(client, schema, email, username, password):
+        """
+        create method
+        """
         return client.action(
             schema,
             ['users', 'create'],

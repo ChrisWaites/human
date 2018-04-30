@@ -11,6 +11,7 @@ People API
    :caption: Contents:
 
 .. automodule:: people
+   :members:
 
 
 Indices and tables
