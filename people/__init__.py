@@ -1,5 +1,5 @@
 """
-people module
+People is an API for requesting human intervention.
 """
 
 import coreapi
