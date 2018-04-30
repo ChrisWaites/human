@@ -49,6 +49,7 @@ class User:
 
 class Deposit:
     """
+    A deposit into a user's account. 
     """
 
     @connect()
@@ -78,7 +79,7 @@ class Deposit:
     @connect()
     def create(client, schema, stripeToken, amount):
         """
-        Creates a new Deposit instance. 
+        Creates a new Deposit instance. User must visit https://people-api-server.herokuapp.com/register prior to creation to set their profile's stripeAccountId.
 
         Args:
             stripeToken (int): A Stripe token representing a valid card.
@@ -122,7 +123,7 @@ class Transfer:
     @connect()
     def create(client, schema, amount):
         """
-        Creates a new Transfer instance.
+        Creates a new Transfer instance. User must visit https://people-api-server.herokuapp.com/register prior to creation to set their profile's stripeAccountId.
 
         Args:
             amount (int): The amount of the transfer in cents.
