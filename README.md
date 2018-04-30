@@ -2,6 +2,8 @@
 
 People is an API for querying human intervention.
 
+Feel free to reference the official documentation [here](https://people.readthedocs.io).
+
 
 ### Installation
 
