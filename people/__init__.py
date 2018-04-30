@@ -26,12 +26,14 @@ def connect(authenticate=True):
 
 class User:
     """
-    User class
+    Used for manipulating account credentials.
     """
 
     @connect(False)
     def create(client, schema, email, username, password):
-        """A method."""
+        """
+        Creates a user object.
+        """
         return client.action(
             schema,
             ['users', 'create'],
