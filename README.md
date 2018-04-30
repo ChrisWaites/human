@@ -1,6 +1,6 @@
 # [People API](https://people.readthedocs.io)
 
-API for human intervention using microtransactions.
+People is an API for querying human intervention.
 
 
 ### Installation
@@ -23,15 +23,9 @@ pip install people
 
 ### Account Funds
 
-Charges are handled using [Stripe](https://stripe.com/) to ensure your security.
+Transactions are entirely handled using [Stripe](https://stripe.com/), ensuring your security. First, login and [register](https://people-api-server.herokuapp.com/register) for a Stripe account connected to our platform. You should see your Stripe account id update within your [profile](https://people-api-server.herokuapp.com/profile).
 
-Login and [register](https://people-api-server.herokuapp.com/register) for a Stripe account connected to our platform.
-
-You should see your Stripe account id update within your [profile](https://people-api-server.herokuapp.com/profile).
-
-To deposit funds, login and visit `https://people-api-server.herokuapp.com/deposit/?amount=AMOUNT`, replacing `AMOUNT` with the amount you intend to deposit in cents.
-
-You should see your balance afterwards within your [profile](https://people-api-server.herokuapp.com/profile)
+To deposit funds, login and visit `https://people-api-server.herokuapp.com/deposit/?amount=AMOUNT`, replacing `AMOUNT` with the amount you intend to deposit in cents. You should see your balance afterwards within your [profile](https://people-api-server.herokuapp.com/profile)
 
 To redeem your balance, simply create a `Transfer` instance as so.
 
