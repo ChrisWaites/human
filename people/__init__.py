@@ -119,9 +119,13 @@ class Transfer:
 
 
 class Attribute:
-    
+    """
+    """
+
     @connect()
     def list(client, schema):
+        """
+        """
         return client.action(
             schema,
             ['attributes', 'list'],
@@ -129,6 +133,8 @@ class Attribute:
 
     @connect()
     def read(client, schema, id):
+        """
+        """
         return client.action(
             schema,
             ['attributes', 'read'],
@@ -137,6 +143,8 @@ class Attribute:
 
     @connect()
     def create(client, schema, key, value):
+        """
+        """
         return client.action(
             schema,
             ['attributes', 'create'],
@@ -145,6 +153,8 @@ class Attribute:
 
     @connect()
     def destroy(client, schema, id):
+        """
+        """
         return client.action(
             schema,
             ['attributes', 'destroy'],
@@ -153,9 +163,13 @@ class Attribute:
 
 
 class Query:
+    """
+    """
 
     @connect()
     def list(client, schema):
+        """
+        """
         return client.action(
             schema,
             ['queries', 'list'],
@@ -163,6 +177,8 @@ class Query:
 
     @connect()
     def create(client, schema, text, regex=regex.ANY):
+        """
+        """
         return client.action(
             schema,
             ['queries', 'create'],
@@ -171,6 +187,8 @@ class Query:
 
     @connect()
     def read(client, schema, id):
+        """
+        """
         return client.action(
             schema,
             ['queries', 'read'],
@@ -179,13 +197,7 @@ class Query:
 
     @connect()
     def get(client, schema):
-        """Requests a query.
-
-        Returns:
-            Query. A random query.
-
-        Raises:
-            Exception
+        """
         """
         try:
             return client.action(
@@ -197,9 +209,13 @@ class Query:
 
 
 class Response:
+    """
+    """
 
     @connect()
     def list(client, schema):
+        """
+        """
         return client.action(
             schema,
             ['responses', 'list'],
@@ -207,6 +223,8 @@ class Response:
 
     @connect()
     def create(client, schema, text, query_id):
+        """
+        """
         return client.action(
             schema,
             ['responses', 'create'],
@@ -215,6 +233,8 @@ class Response:
 
     @connect()
     def read(client, schema, id):
+        """
+        """
         return client.action(
             schema,
             ['responses', 'read'],
@@ -223,9 +243,13 @@ class Response:
 
 
 class Rating:
+    """
+    """
 
     @connect()
     def list(client, schema):
+        """
+        """
         return client.action(
             schema,
             ['ratings', 'list'],
@@ -233,6 +257,8 @@ class Rating:
 
     @connect()
     def create(client, schema, satisfactory, response_id):
+        """
+        """
         return client.action(
             schema,
             ['ratings', 'create'],
@@ -241,6 +267,8 @@ class Rating:
 
     @connect()
     def read(client, schema, id):
+        """
+        """
         return client.action(
             schema,
             ['ratings', 'read'],
@@ -249,6 +277,8 @@ class Rating:
 
     @connect()
     def destroy(client, schema, id):
+        """
+        """
         return client.action(
             schema,
             ['attributes', 'destroy'],
