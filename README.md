@@ -1,6 +1,6 @@
-# People API
+# [People API](https://people.readthedocs.io)
 
-`people` is an API for requesting human intervention.
+API for human intervention using microtransactions.
 
 
 ### Installation
@@ -10,29 +10,34 @@ pip install people
 ```
 
 
-## Getting Started
+### Getting Started
 
 ```python
 >>> import people
-```
 
-### Connecting
-```python
 >>> people.User.create('example@email.com', 'example_username', 'example_password')
 
 >>> people.username = 'example_username'
 >>> people.password = 'example_password'
 ```
 
-### Funding Your Account
+### Account Funds
 
-Charges are handled using [Checkout](https://stripe.com/checkout) by [Stripe](https://stripe.com/), ensuring your security by handling all secure information client side.
+Charges are handled using [Stripe](https://stripe.com/) to ensure your security.
+
+Login and [register](https://people-api-server.herokuapp.com/register) for a Stripe account connected to our platform.
+
+You should see your Stripe account id update within your [profile](https://people-api-server.herokuapp.com/profile).
 
 To deposit funds, login and visit `https://people-api-server.herokuapp.com/deposit/?amount=AMOUNT`, replacing `AMOUNT` with the amount you intend to deposit in cents.
 
-You should see your balance afterwards within your profile at `https://people-api-server.herokuapp.com/profile`.
+You should see your balance afterwards within your [profile](https://people-api-server.herokuapp.com/profile)
 
-If you think there's a discrepency, feel free to email `support@peopleapi.com` with your inquiry.
+To redeem your balance, simply create a `Transfer` instance as so.
+
+```python
+>>> transfer = people.Transfer.create(AMOUNT) 
+```
 
 
 ### Creating Queries
@@ -50,25 +55,12 @@ If you think there's a discrepency, feel free to email `support@peopleapi.com` w
     "Is this an image of a [cat], a [dog], or [neither]? http://...",
     people.regex.union('cat', 'dog', 'neither')
 )
-
->>> people.Query.create(
-    "How positive is this article on a scale from 1 to 5? http://...",
-    r'[1-5]'
-)
 ```
 
 ### Reading Responses
 ```python
->>> unanswered_query = ... 
->>> response = people.Query.read(unanswered_query['id'])['response']
-
-None
-
->>> answered_query = ...
->>> response = people.Query.read(answered_query['id'])['response']
->>> response['text']
-
-34.1231
+>>> query = people.Query.list()[0]
+>>> query['response']['text']
 ```
 
 ### Creating Responses
@@ -77,10 +69,6 @@ None
 >>> query['text']
 
 "How many cars are in this image? http://...",
-
->>> query['regex']
-
-r'd+'
 
 >>> response = people.Response.create('Not sure.', query['id'])
 
@@ -92,28 +80,13 @@ coreapi.exceptions.ErrorMessage: <Error: 400 Bad Request>
 >>> response = people.Response.create('3', query['id'])
 ```
 
-### Redeeming from Your Account
-
-To redeem funds, if you haven't already, login and visit `https://people-api-server.herokuapp.com/register` to register for a Stripe account connected to our platform.
-
-You should see your Stripe account id update within your profile at `https://people-api-server.herokuapp.com/profile`.
-
-Now, simply create a Transfer for the amount you intend to redeem in cents.
-
-```python
->>> transfer = people.Transfer.create(50) 
-```
 
 ### Providing Feedback
 
-Users should feel incentivized to provide feedback on a subset of their responses to minimize their likelihood of receiving future interaction
-with poor quality responders.
+You should always provide feedback to a subset of responses to minimize likelihood of receiving poor responses in the future.
 
 ```python
->>> good_response = ...
 >>> people.Rating.create(True, good_response['id'])
-
->>> bad_response = ...
 >>> people.Rating.create(False, bad_response['id'])
 ```
 
