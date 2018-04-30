@@ -28,15 +28,23 @@ def connect(authenticate=True):
 
 class User:
     """
-    Used for manipulating account credentials.
+    User information.
+
+    Attributes:
+        email (str): 
+        username (str): 
+        password (str): 
     """
 
     @connect(False)
     def create(client, schema, email, username, password):
         """
+        Creates a User instance.
+
         Args:
-            username (str): New account username
-            password (str): New account password
+            email (str): The new account's email
+            username (str): The new account's username
+            password (str): The new account's password
         """
         return client.action(
             schema,
@@ -45,28 +53,21 @@ class User:
         )
 
 
-class Profile:
-
-    @connect()
-    def list(client, schema):
-        return client.action(
-            schema,
-            ['profiles', 'list'],
-        )
-
-    @connect()
-    def read(client, schema, id):
-        return client.action(
-            schema,
-            ['profiles', 'read'],
-            {'id': id},
-        )
-
-
 class Deposit:
+    """
+    Account deposits.
+
+    Attributes:
+        id (str): A universally unique identifier.
+        stripeToken (int): The Stripe token used to create the deposit.
+        amount (int): The amount of the deposit in cents.
+    """
 
     @connect()
     def list(client, schema):
+        """
+        Lists all Deposit instances associated with the current User.
+        """
         return client.action(
             schema,
             ['deposits', 'list'],
@@ -74,6 +75,9 @@ class Deposit:
 
     @connect()
     def read(client, schema, id):
+        """
+        Reads the details of a Deposit instance.
+        """
         return client.action(
             schema,
             ['deposits', 'read'],
@@ -82,6 +86,13 @@ class Deposit:
 
     @connect()
     def create(client, schema, stripeToken, amount):
+        """
+        Creates a Deposit instance.
+
+        Args:
+            stripeToken (int): The Stripe token used to create the deposit.
+            amount (int): The amount of the deposit in cents.
+        """
         return client.action(
             schema,
             ['deposits', 'create'],
