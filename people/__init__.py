@@ -64,7 +64,7 @@ class Deposit:
     @connect()
     def read(client, schema, id):
         """
-        Retrieves the details of a particular Deposit instance.
+        Retrieves the details of a given Deposit instance.
 
         Args:
             id (str): The id of the deposit.
@@ -108,7 +108,7 @@ class Transfer:
     @connect()
     def read(client, schema, id):
         """
-        Retrieves the details of a particular Transfer instance.
+        Retrieves the details of a given Transfer instance.
 
         Args:
             id (str): The id of the transfer.
@@ -136,7 +136,8 @@ class Transfer:
 
 class Attribute:
     """
-    A key-value relationship representing a profile attribute. E.g. ('education', 'university of california, berkeley')
+    A key-value relationship representing a profile attribute.
+    E.g. 'education': 'university of california, berkeley'
     """
 
     @connect()
@@ -152,7 +153,7 @@ class Attribute:
     @connect()
     def read(client, schema, id):
         """
-        Retrieves the details of a particular Attribute instance.
+        Retrieves the details of a given Attribute instance.
 
         Args:
             id (str): The id of the attribute.
@@ -181,6 +182,8 @@ class Attribute:
     @connect()
     def destroy(client, schema, id):
         """
+        Deletes a given Attribute instance.
+
         Args:
             id (str): The id of the attribute.
         """
@@ -223,7 +226,7 @@ class Query:
     @connect()
     def read(client, schema, id):
         """
-        Retrieves the details of a particular Query instance.
+        Retrieves the details of a given Query instance.
 
         Args:
             id (str): The id of the query.
@@ -237,7 +240,7 @@ class Query:
     @connect()
     def get(client, schema):
         """
-        Retrieves a random query for the current user.
+        Requests an unanswered Query compatible with the current user.
         """
         try:
             return client.action(
@@ -280,7 +283,7 @@ class Response:
     @connect()
     def read(client, schema, id):
         """
-        Retrieves the details of a particular Response instance.
+        Retrieves the details of a given Response instance.
 
         Args:
             id (str): The id of the response.
@@ -324,7 +327,7 @@ class Rating:
     @connect()
     def read(client, schema, id):
         """
-        Retrieves the details of a particular Rating instance.
+        Retrieves the details of a given Rating instance.
 
         Args:
             id (str): The id of the rating.
@@ -338,6 +341,8 @@ class Rating:
     @connect()
     def destroy(client, schema, id):
         """
+        Deletes a given Rating instance.
+
         Args:
             id (str): The id of the rating.
         """
