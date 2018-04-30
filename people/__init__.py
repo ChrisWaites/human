@@ -54,6 +54,7 @@ class Deposit:
     @connect()
     def list(client, schema):
         """
+        Retrieves all Deposit instances associated with the current user.
         """
         return client.action(
             schema,
@@ -63,6 +64,8 @@ class Deposit:
     @connect()
     def read(client, schema, id):
         """
+        Retrieves the details of a particular Deposit instance.
+
         Args:
             id (str): The id of the deposit.
         """
@@ -95,6 +98,7 @@ class Transfer:
     @connect()
     def list(client, schema):
         """
+        Retrieves all Transfer instances associated with the current user.
         """
         return client.action(
             schema,
@@ -104,6 +108,8 @@ class Transfer:
     @connect()
     def read(client, schema, id):
         """
+        Retrieves the details of a particular Transfer instance.
+
         Args:
             id (str): The id of the transfer.
         """
@@ -136,6 +142,7 @@ class Attribute:
     @connect()
     def list(client, schema):
         """
+        Retrieves all Attribute instances associated with the current user.
         """
         return client.action(
             schema,
@@ -145,6 +152,8 @@ class Attribute:
     @connect()
     def read(client, schema, id):
         """
+        Retrieves the details of a particular Attribute instance.
+
         Args:
             id (str): The id of the attribute.
         """
@@ -189,6 +198,7 @@ class Query:
     @connect()
     def list(client, schema):
         """
+        Retrieves all Query instances associated with the current user.
         """
         return client.action(
             schema,
@@ -213,6 +223,8 @@ class Query:
     @connect()
     def read(client, schema, id):
         """
+        Retrieves the details of a particular Query instance.
+
         Args:
             id (str): The id of the query.
         """
@@ -243,6 +255,7 @@ class Response:
     @connect()
     def list(client, schema):
         """
+        Retrieves all Response instances associated with the current user.
         """
         return client.action(
             schema,
@@ -267,6 +280,8 @@ class Response:
     @connect()
     def read(client, schema, id):
         """
+        Retrieves the details of a particular Response instance.
+
         Args:
             id (str): The id of the response.
         """
@@ -284,6 +299,7 @@ class Rating:
     @connect()
     def list(client, schema):
         """
+        Retrieves all Rating instances associated with the current user.
         """
         return client.action(
             schema,
@@ -308,6 +324,8 @@ class Rating:
     @connect()
     def read(client, schema, id):
         """
+        Retrieves the details of a particular Rating instance.
+
         Args:
             id (str): The id of the rating.
         """
