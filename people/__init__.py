@@ -32,7 +32,12 @@ class User:
     @connect(False)
     def create(client, schema, email, username, password):
         """
-        create method
+        Args:
+            username (str): The account username 
+            password (str): The account password
+
+        Returns:
+            None
         """
         return client.action(
             schema,
