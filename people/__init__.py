@@ -203,7 +203,7 @@ class Query:
     def read(client, schema, id):
         """
         Args:
-            id (str)
+            id (str):
         """
         return client.action(
             schema,
@@ -240,6 +240,9 @@ class Response:
     @connect()
     def create(client, schema, text, query_id):
         """
+        Args:
+            text (str):
+            query_id (str):
         """
         return client.action(
             schema,
@@ -250,6 +253,8 @@ class Response:
     @connect()
     def read(client, schema, id):
         """
+        Args:
+            id (str):
         """
         return client.action(
             schema,
@@ -274,6 +279,9 @@ class Rating:
     @connect()
     def create(client, schema, satisfactory, response_id):
         """
+        Args:
+            satisfactory (bool):
+            response_id (str):
         """
         return client.action(
             schema,
@@ -284,6 +292,8 @@ class Rating:
     @connect()
     def read(client, schema, id):
         """
+        Args:
+            id (str):
         """
         return client.action(
             schema,
@@ -294,6 +304,8 @@ class Rating:
     @connect()
     def destroy(client, schema, id):
         """
+        Args:
+            id (str):
         """
         return client.action(
             schema,
