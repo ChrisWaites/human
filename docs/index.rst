@@ -3,15 +3,14 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to people's documentation!
-==================================
+People API
+==========
 
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
 .. automodule:: people
-   :members:
 
 
 Indices and tables
