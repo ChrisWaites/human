@@ -13,9 +13,6 @@ People API
 .. automodule:: people
    :members:
 
-.. autoclass:: people.User
-   :members:
-
 
 Indices and tables
 ==================
