@@ -28,19 +28,11 @@ def connect(authenticate=True):
 
 class User:
     """
-    User information.
-
-    Attributes:
-        email (str): 
-        username (str): 
-        password (str): 
     """
 
     @connect(False)
     def create(client, schema, email, username, password):
         """
-        Creates a User instance.
-
         Args:
             email (str): The new account's email
             username (str): The new account's username
@@ -55,18 +47,11 @@ class User:
 
 class Deposit:
     """
-    Account deposits.
-
-    Attributes:
-        id (str): A universally unique identifier.
-        stripeToken (int): The Stripe token used to create the deposit.
-        amount (int): The amount of the deposit in cents.
     """
 
     @connect()
     def list(client, schema):
         """
-        Lists all Deposit instances associated with the current User.
         """
         return client.action(
             schema,
@@ -76,7 +61,8 @@ class Deposit:
     @connect()
     def read(client, schema, id):
         """
-        Reads the details of a Deposit instance.
+        Args:
+            id (str):
         """
         return client.action(
             schema,
@@ -87,11 +73,9 @@ class Deposit:
     @connect()
     def create(client, schema, stripeToken, amount):
         """
-        Creates a Deposit instance.
-
         Args:
-            stripeToken (int): The Stripe token used to create the deposit.
-            amount (int): The amount of the deposit in cents.
+            stripeToken (int):
+            amount (int):
         """
         return client.action(
             schema,
@@ -101,9 +85,13 @@ class Deposit:
 
         
 class Transfer:
+    """
+    """
 
     @connect()
     def list(client, schema):
+        """
+        """
         return client.action(
             schema,
             ['transfers', 'list'],
@@ -111,6 +99,8 @@ class Transfer:
 
     @connect()
     def read(client, schema, id):
+        """
+        """
         return client.action(
             schema,
             ['transfers', 'read'],
@@ -119,6 +109,8 @@ class Transfer:
 
     @connect()
     def create(client, schema, amount):
+        """
+        """
         return client.action(
             schema,
             ['transfers', 'create'],
