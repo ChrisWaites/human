@@ -3,6 +3,7 @@ People is an API for requesting human intervention.
 """
 
 import coreapi
+from functools import wraps
 from people import regex
 
 
@@ -15,6 +16,7 @@ schema_url = 'https://people-api-server.herokuapp.com/schema'
 
 def connect(authenticate=True):
     def decorator(f):
+        @wraps(f)
         def _connect(*args, **kwargs):
             auth = coreapi.auth.BasicAuthentication(username, password) if authenticate else None 
             client = coreapi.Client(auth=auth)

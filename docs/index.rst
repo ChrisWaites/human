@@ -10,7 +10,7 @@ People API
    :maxdepth: 2
    :caption: Contents:
 
-.. automodule:: people/__init__
+.. automodule:: people
    :members:
 
 
