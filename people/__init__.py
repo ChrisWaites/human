@@ -207,7 +207,13 @@ class Query:
 
     @connect()
     def get(client, schema):
-    """
+    """Requests a query.
+
+    Returns:
+        Query. A random query.
+
+    Raises:
+        Exception
     """
         try:
             return client.action(
