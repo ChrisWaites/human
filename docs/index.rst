@@ -6,6 +6,16 @@
 Welcome to people's documentation!
 ==================================
 
+An API for human intelligence.
+
+Why people?
+-----------
+
+Well, because!
+
+Contents:
+=========
+
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
