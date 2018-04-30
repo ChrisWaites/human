@@ -28,6 +28,10 @@ def connect(authenticate=True):
 
 class User:
     """
+    Attributes:
+        email (str)
+        username (str)
+        password (str)
     """
 
     @connect(False)
@@ -47,6 +51,9 @@ class User:
 
 class Deposit:
     """
+    Attributes:
+        stripeToken (str):
+        amount (int):
     """
 
     @connect()
@@ -86,6 +93,8 @@ class Deposit:
         
 class Transfer:
     """
+    Attributes:
+        amount (int):
     """
 
     @connect()
@@ -124,6 +133,9 @@ class Transfer:
 
 class Attribute:
     """
+    Attributes:
+        key (str):
+        value (str):
     """
 
     @connect()
@@ -175,6 +187,10 @@ class Attribute:
 
 class Query:
     """
+    Attributes:
+        text (str):
+        regex (str):
+        callback (str):
     """
 
     @connect()
@@ -226,6 +242,9 @@ class Query:
 
 class Response:
     """
+    Attributes:
+        text (str):
+        query (str):
     """
 
     @connect()
@@ -265,6 +284,9 @@ class Response:
 
 class Rating:
     """
+    Attributes:
+        satisfactory (bool):
+        response (str):
     """
 
     @connect()
