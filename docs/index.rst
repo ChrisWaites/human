@@ -11,7 +11,7 @@ Welcome to people's documentation!
    :caption: Contents:
 
 .. automodule:: people
-
+   :members:
 
 
 Indices and tables
