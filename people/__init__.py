@@ -30,8 +30,8 @@ class User:
     """
     """
 
-    @connect(False)
     @staticmethod
+    @connect(False)
     def create(client, schema, email, username, password):
         """
         Creates a new User instance. 
@@ -53,8 +53,8 @@ class Deposit:
     A deposit into a user's account. 
     """
 
-    @connect()
     @staticmethod
+    @connect()
     def list(client, schema):
         """
         Retrieves all Deposit instances associated with the current user.
@@ -64,8 +64,8 @@ class Deposit:
             ['deposits', 'list'],
         )
 
-    @connect()
     @staticmethod
+    @connect()
     def read(client, schema, id):
         """
         Retrieves the details of a given Deposit instance.
@@ -79,8 +79,8 @@ class Deposit:
             {'id': id},
         )
 
-    @connect()
     @staticmethod
+    @connect()
     def create(client, schema, stripeToken, amount):
         """
         Creates a new Deposit instance. User must visit https://people-api-server.herokuapp.com/register prior to creation to set their profile's stripeAccountId.
@@ -100,8 +100,8 @@ class Transfer:
     """
     """
 
-    @connect()
     @staticmethod
+    @connect()
     def list(client, schema):
         """
         Retrieves all Transfer instances associated with the current user.
@@ -111,8 +111,8 @@ class Transfer:
             ['transfers', 'list'],
         )
 
-    @connect()
     @staticmethod
+    @connect()
     def read(client, schema, id):
         """
         Retrieves the details of a given Transfer instance.
@@ -126,8 +126,8 @@ class Transfer:
             {'id': id},
         )
 
-    @connect()
     @staticmethod
+    @connect()
     def create(client, schema, amount):
         """
         Creates a new Transfer instance. User must visit https://people-api-server.herokuapp.com/register prior to creation to set their profile's stripeAccountId.
@@ -148,8 +148,8 @@ class Attribute:
     E.g. 'education': 'university of california, berkeley'
     """
 
-    @connect()
     @staticmethod
+    @connect()
     def list(client, schema):
         """
         Retrieves all Attribute instances associated with the current user.
@@ -159,8 +159,8 @@ class Attribute:
             ['attributes', 'list'],
         )
 
-    @connect()
     @staticmethod
+    @connect()
     def read(client, schema, id):
         """
         Retrieves the details of a given Attribute instance.
@@ -174,8 +174,8 @@ class Attribute:
             {'id': id},
         )
 
-    @connect()
     @staticmethod
+    @connect()
     def create(client, schema, key, value):
         """
         Creates a new Attribute instance.
@@ -190,8 +190,8 @@ class Attribute:
             {'key': key, 'value': value},
         )
 
-    @connect()
     @staticmethod
+    @connect()
     def destroy(client, schema, id):
         """
         Deletes a given Attribute instance.
@@ -210,8 +210,8 @@ class Query:
     """
     """
 
-    @connect()
     @staticmethod
+    @connect()
     def list(client, schema):
         """
         Retrieves all Query instances associated with the current user.
@@ -221,8 +221,8 @@ class Query:
             ['queries', 'list'],
         )
 
-    @connect()
     @staticmethod
+    @connect()
     def create(client, schema, text, regex=regex.ANY, callback=None, bid=1):
         """
         Creates a new Query instance. 
@@ -239,8 +239,8 @@ class Query:
             {'text': text, 'regex': regex, 'callback': callback, 'bid': bid},
         )
 
-    @connect()
     @staticmethod
+    @connect()
     def read(client, schema, id):
         """
         Retrieves the details of a given Query instance.
@@ -254,8 +254,8 @@ class Query:
             {'id': id}
         )
 
-    @connect()
     @staticmethod
+    @connect()
     def get(client, schema):
         """
         Requests an unanswered Query compatible with the current user.
@@ -273,8 +273,8 @@ class Response:
     """
     """
 
-    @connect()
     @staticmethod
+    @connect()
     def list(client, schema):
         """
         Retrieves all Response instances associated with the current user.
@@ -284,8 +284,8 @@ class Response:
             ['responses', 'list'],
         )
 
-    @connect()
     @staticmethod
+    @connect()
     def create(client, schema, text, query_id):
         """
         Creates a new Response instance.
@@ -300,8 +300,8 @@ class Response:
             {'text': text, 'query': query_id},
         )
 
-    @connect()
     @staticmethod
+    @connect()
     def read(client, schema, id):
         """
         Retrieves the details of a given Response instance.
@@ -320,8 +320,8 @@ class Rating:
     """
     """
 
-    @connect()
     @staticmethod
+    @connect()
     def list(client, schema):
         """
         Retrieves all Rating instances associated with the current user.
@@ -331,8 +331,8 @@ class Rating:
             ['ratings', 'list'],
         )
 
-    @connect()
     @staticmethod
+    @connect()
     def create(client, schema, satisfactory, response_id):
         """
         Creates a new Rating instance.
@@ -347,8 +347,8 @@ class Rating:
             {'satisfactory': satisfactory, 'response': response_id},
         )
 
-    @connect()
     @staticmethod
+    @connect()
     def read(client, schema, id):
         """
         Retrieves the details of a given Rating instance.
@@ -362,8 +362,8 @@ class Rating:
             {'id': id},
         )
 
-    @connect()
     @staticmethod
+    @connect()
     def destroy(client, schema, id):
         """
         Deletes a given Rating instance.
