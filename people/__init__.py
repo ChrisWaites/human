@@ -50,12 +50,11 @@ class User:
         )
 
     @staticmethod
-    @connect()
-    def profile(client, schema):
+    def profile():
         """
         Retrieves the details of a given Profile instance.
         """
-        return requests.get(server_url + '/profile').json()
+        return requests.get(server_url + '/profile', auth=(username, password)).json()
 
 
 class Deposit:
