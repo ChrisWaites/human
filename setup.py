@@ -10,5 +10,5 @@ setup(
     license='MIT',
     url='http://github.com/ChrisWaites/people',
     packages=find_packages(),
-    install_requires=['coreapi'],
+    install_requires=['coreapi', 'requests'],
 )

@@ -3,15 +3,16 @@ People is an API for requesting human intervention.
 """
 
 import coreapi
+import requests
 from functools import wraps
 from people import regex
 
 
 global username
 global password
-global schema_url
+global server_url
 
-schema_url = 'https://people-api-server.herokuapp.com/schema'
+server_url = 'https://people-api-server.herokuapp.com'
 
 
 def connect(authenticate=True):
@@ -20,10 +21,21 @@ def connect(authenticate=True):
         def _connect(*args, **kwargs):
             auth = coreapi.auth.BasicAuthentication(username, password) if authenticate else None 
             client = coreapi.Client(auth=auth)
-            schema = client.get(schema_url)
+            schema = client.get(server_url + '/schema')
             return f(client, schema, *args, **kwargs)
         return _connect
     return decorator
+
+
+class Profile:
+    """
+    """
+    @staticmethod
+    @connect()
+    def get(client, schema):
+        """
+        """
+        return requests.get(server_url + '/profile').text
 
 
 class User:
@@ -286,18 +298,19 @@ class Response:
 
     @staticmethod
     @connect()
-    def create(client, schema, text, query_id):
+    def create(client, schema, text, query):
         """
         Creates a new Response instance.
 
         Args:
             text (str): The text for the response.
-            query_id (str): The id of the target query.
+            query (str): The id of the target query.
         """
+        query = query if type(query) == str else query['id']
         return client.action(
             schema,
             ['responses', 'create'],
-            {'text': text, 'query': query_id},
+            {'text': text, 'query': query},
         )
 
     @staticmethod
@@ -333,18 +346,19 @@ class Rating:
 
     @staticmethod
     @connect()
-    def create(client, schema, satisfactory, response_id):
+    def create(client, schema, satisfactory, response):
         """
         Creates a new Rating instance.
 
         Args:
             satisfactory (bool): True if the response is satisfactory, False otherwise.
-            response_id (str): The id of the response.
+            response (str): The id of the response.
         """
+        response = response if type(response) == str else response['id']
         return client.action(
             schema,
             ['ratings', 'create'],
-            {'satisfactory': satisfactory, 'response': response_id},
+            {'satisfactory': satisfactory, 'response': response},
         )
 
     @staticmethod

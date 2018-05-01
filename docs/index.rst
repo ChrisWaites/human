@@ -18,38 +18,44 @@ User
 .. autoclass:: people.User
    :members:
 
+Profile
+=======
+
+.. autoclass:: people.Profile
+   :members:
+
 Deposit
-====
+=======
 
 .. autoclass:: people.Deposit
    :members:
 
 Transfer
-====
+========
 
 .. autoclass:: people.Transfer
    :members:
 
 Query
-====
+=====
 
 .. autoclass:: people.Query
    :members:
 
 Response
-====
+========
 
 .. autoclass:: people.Response
    :members:
 
 Rating
-====
+======
 
 .. autoclass:: people.Rating
    :members:
 
 Attribute
-====
+=========
 
 .. autoclass:: people.Attribute
    :members:
