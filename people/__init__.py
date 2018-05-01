@@ -83,7 +83,7 @@ class Deposit:
     @connect()
     def create(client, schema, stripeToken, amount):
         """
-        Creates a new Deposit instance. User must visit https://people-api-server.herokuapp.com/register prior to creation to set their profile's stripeAccountId.
+        Creates a new Deposit instance. Must visit https://people-api-server.herokuapp.com/register prior to set profile's stripeAccountId.
 
         Args:
             stripeToken (int): A Stripe token representing a valid card.
@@ -130,7 +130,7 @@ class Transfer:
     @connect()
     def create(client, schema, amount):
         """
-        Creates a new Transfer instance. User must visit https://people-api-server.herokuapp.com/register prior to creation to set their profile's stripeAccountId.
+        Creates a new Transfer instance. Must visit https://people-api-server.herokuapp.com/register prior to set profile's stripeAccountId.
 
         Args:
             amount (int): The amount of the transfer in cents.
@@ -229,9 +229,9 @@ class Query:
 
         Args:
             text (str): The text to be included in the query.
-            regex (str): A regex the response must match to be valid. Defaults to '.*'.
-            callback (str): The url for the Response to be POSTed to. Defaults to None.
-            bid (int): The bid price for the Response in cents. Defaults to 1.
+            regex (:obj:`str`, optional): A regex the response must match to be valid. Defaults to '.*'.
+            callback (:obj:`str`, optional): The url for the Response to be POSTed to. Defaults to None.
+            bid (:obj:`int`, optional): The bid price for the Response in cents. Defaults to 1.
         """
         return client.action(
             schema,
