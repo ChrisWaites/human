@@ -233,7 +233,7 @@ class Query:
 
     @staticmethod
     @connect()
-    def create(client, schema, text, regex=regex.ANY, callback=None, bid=1):
+    def create(client, schema, text, regex=regex.any, callback=None, bid=1):
         """
         Creates a new Query instance. 
 
