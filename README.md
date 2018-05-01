@@ -1,8 +1,8 @@
-# [People API](https://people.readthedocs.io)
+# [People API](https://people.launchaco.com/)
 
-People is an API for querying human intervention.
+People is an API for requesting human interaction.
 
-Feel free to reference the official documentation [here](https://people.readthedocs.io).
+Official documentation located [here](https://people.readthedocs.io).
 
 
 ### Installation
