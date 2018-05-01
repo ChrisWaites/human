@@ -34,6 +34,7 @@ class Profile:
     @connect()
     def get(client, schema):
         """
+        Retrieves the details of a given Profile instance.
         """
         return requests.get(server_url + '/profile').text
 

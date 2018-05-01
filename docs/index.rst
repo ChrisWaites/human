@@ -9,7 +9,7 @@
    :caption: Contents:
 
 
-People API
+`People API <https://people.launchaco.com/>`_
 ==========
 
 User
