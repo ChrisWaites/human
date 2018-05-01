@@ -18,12 +18,6 @@ User
 .. autoclass:: people.User
    :members:
 
-Profile
-=======
-
-.. autoclass:: people.Profile
-   :members:
-
 Deposit
 =======
 

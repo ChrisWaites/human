@@ -27,20 +27,9 @@ def connect(authenticate=True):
     return decorator
 
 
-class Profile:
-    """
-    """
-    @staticmethod
-    @connect()
-    def get(client, schema):
-        """
-        Retrieves the details of a given Profile instance.
-        """
-        return requests.get(server_url + '/profile').text
-
-
 class User:
     """
+    Represents user details (email, username, balance, etc.)
     """
 
     @staticmethod
@@ -59,6 +48,14 @@ class User:
             ['users', 'create'],
             {'email': email, 'username': username, 'password': password},
         )
+
+    @staticmethod
+    @connect()
+    def profile(client, schema):
+        """
+        Retrieves the details of a given Profile instance.
+        """
+        return requests.get(server_url + '/profile').json()
 
 
 class Deposit:
