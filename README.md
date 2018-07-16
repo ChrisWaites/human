@@ -3,20 +3,21 @@
 People is an API for requesting human interaction.
 
 ```python
->>> from people import Query, regex
-
->>> query = Query.create(
-    'How many people are in this image? http://...',
+>>> from people import Query, Response
+ 
+>>> Query.create(
+    'How many cars are in this image? http://...',
     regex.nonneg_int,
-    'https://callback.url/'
+    'http://callback.url/'
 )
-
->>> Query.read(query)['response']
-
-{
-  'text': 4,
-  ...
-}
+ 
+>>> query = Query.get()
+ 
+>>> query.text
+ 
+'Is this person smiling? Respond [yes] or [no]. http://...'
+ 
+>>> Response.create('yes', query)
 ```
 
 Official documentation located [here](https://people.readthedocs.io).
