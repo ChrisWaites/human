@@ -3,15 +3,15 @@
 People is an API for requesting human interaction.
 
 ```python
->>> import people
+>>> from people import Query
 
->>> query = people.Query.create(
-    "How many people are in this image? http://...",
+>>> query = Query.create(
+    'How many people are in this image? http://...',
     people.regex.nonneg_int,
-    "https://callback.url/"
+    'https://callback.url/'
 )
 
->>> people.Query.read(query)['response']
+>>> Query.read(query)['response']
 
 {
   'text': 4,
