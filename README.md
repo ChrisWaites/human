@@ -11,9 +11,12 @@ People is an API for requesting human interaction.
     "https://callback.url/"
 )
 
->>> people.Query.read(query)['response']['text']
+>>> people.Query.read(query)['response']
 
-4
+{
+  'text': 4,
+  ...
+}
 ```
 
 Official documentation located [here](https://people.readthedocs.io).
