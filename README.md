@@ -3,11 +3,11 @@
 People is an API for requesting human interaction.
 
 ```python
->>> from people import Query
+>>> from people import Query, regex
 
 >>> query = Query.create(
     'How many people are in this image? http://...',
-    people.regex.nonneg_int,
+    regex.nonneg_int,
     'https://callback.url/'
 )
 
