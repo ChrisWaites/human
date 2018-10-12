@@ -1,4 +1,4 @@
-# [People API (In Development)](https://people.launchaco.com/)
+# [People API](https://people.launchaco.com/)
 
 People is an API for requesting human interaction.
 
