@@ -1,27 +1,33 @@
-# [People API](https://people.launchaco.com/)
+# [People API](https://people.launchaco.com) 👨‍💻
 
-People is an API for requesting human interaction.
+People is an API for requesting on-demand human input.
+
+For more details, check out our [documentation](https://people.readthedocs.io)!
 
 ```python
->>> from people import Query, Response
+from people import Query, Response
  
->>> Query.create(
-    'How many cars are in this image? http://...',
-    regex.nonneg_int,
-    'http://callback.url/'
+Query.create(
+  'How many cars are in this image? http://...',
+  regex.nonneg_int,
+  'http://callback.url/'
 )
+
+# POST http://callback.url/
+# {
+#   'response': '2',
+#   'query': {
+#     ...
+#   }
+# }
  
->>> query = Query.get()
+query = Query.get()
+print(query.text)
  
->>> query.text
+>>> 'Is this person smiling? Respond [yes] or [no]. http://...'
  
-'Is this person smiling? Respond [yes] or [no]. http://...'
- 
->>> Response.create('yes', query)
+Response.create('yes', query)
 ```
-
-Official documentation located [here](https://people.readthedocs.io).
-
 
 ### Installation
 
@@ -29,26 +35,37 @@ Official documentation located [here](https://people.readthedocs.io).
 pip install people
 ```
 
-### Connecting
+### Authentication
 
 ```python
->>> people.User.create('example@email.com', 'example_username', 'example_password')
+import people
+from people import User
 
->>> people.username = 'example_username'
->>> people.password = 'example_password'
+# Registration API
+User.create('example@email.com', 'example_username', 'example_password')
+
+# Set auth details
+people.username = 'example_username'
+people.password = 'example_password'
 ```
 
 ### Funding
 
-Transactions are entirely handled using [Stripe](https://stripe.com/), ensuring your security.
+#### Paying for queries
 
-First, login and [register](https://people-api-server.herokuapp.com/register) for a Stripe account connected to our platform. You should see your Stripe account id update within your [profile](https://people-api-server.herokuapp.com/profile).
+Transactions are handled using [Stripe](https://stripe.com/) to ensure your security.
 
-If you intend to submit queries, you must deposit funds. Login and visit `https://people-api-server.herokuapp.com/deposit/?amount=AMOUNT`, replacing `AMOUNT` with the amount you intend to deposit in cents. You should see your balance afterwards within your [profile](https://people-api-server.herokuapp.com/profile).
+First, [login and register](https://people-api-server.herokuapp.com/register) for a Stripe account connected to our platform. You should see your Stripe account id update within your [profile](https://people-api-server.herokuapp.com/profile).
 
-If you intend to answer queries, to redeem your balance, create a `Transfer` instance as so.
+Then you'll need to deposit funds. Log in and visit `https://people-api-server.herokuapp.com/deposit/?amount=AMOUNT`, replacing `AMOUNT` with the amount you intend to deposit in cents. You should see your balance afterwards within your [profile](https://people-api-server.herokuapp.com/profile).
+
+#### Getting paid to answer queries
+
+To get paid for answering queries, simply submit responses! Then, to redeem your balance, create a `Transfer` instance as so.
 
 ```python
->>> transfer = people.Transfer.create(AMOUNT) 
+from people import Transfer
+
+transfer = Transfer.create(AMOUNT) 
 ```
 
